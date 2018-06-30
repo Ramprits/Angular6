@@ -1,0 +1,24 @@
+{
+  "npmScope": "angular6",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "angular6": {
+      "tags": []
+    },
+    "angular6-e2e": {
+      "tags": []
+    },
+    "training-app": {
+      "tags": []
+    },
+    "training-app-e2e": {
+      "tags": []
+    }
+  }
+}

@@ -1,11 +1,11 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
     "angular6": {
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/angular6",
+      "sourceRoot": "apps/angular6/src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {
@@ -17,17 +17,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular6",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/apps/angular6",
+            "index": "apps/angular6/src/index.html",
+            "main": "apps/angular6/src/main.ts",
+            "polyfills": "apps/angular6/src/polyfills.ts",
+            "tsConfig": "apps/angular6/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/angular6/src/favicon.ico",
+              "apps/angular6/src/assets",
+              "apps/angular6/src/manifest.json"
             ],
             "styles": [
-              "src/styles.scss"
+              "apps/angular6/src/styles.scss"
             ],
             "scripts": []
           },
@@ -35,8 +36,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/angular6/src/environments/environment.ts",
+                  "with": "apps/angular6/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -47,7 +48,8 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true
             }
           }
         },
@@ -71,17 +73,18 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "main": "apps/angular6/src/test.ts",
+            "polyfills": "apps/angular6/src/polyfills.ts",
+            "tsConfig": "apps/angular6/tsconfig.spec.json",
+            "karmaConfig": "apps/angular6/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "apps/angular6/src/styles.scss"
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/angular6/src/favicon.ico",
+              "apps/angular6/src/assets",
+              "apps/angular6/src/manifest.json"
             ]
           }
         },
@@ -89,8 +92,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "apps/angular6/tsconfig.app.json",
+              "apps/angular6/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -100,13 +103,13 @@
       }
     },
     "angular6-e2e": {
-      "root": "e2e/",
+      "root": "apps/angular6-e2e",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "protractorConfig": "apps/angular6-e2e/protractor.conf.js",
             "devServerTarget": "angular6:serve"
           },
           "configurations": {
@@ -118,7 +121,126 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": "apps/angular6-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "training-app": {
+      "root": "apps/training-app/",
+      "sourceRoot": "apps/training-app/src",
+      "projectType": "application",
+      "prefix": "angular6",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/training-app",
+            "index": "apps/training-app/src/index.html",
+            "main": "apps/training-app/src/main.ts",
+            "polyfills": "apps/training-app/src/polyfills.ts",
+            "tsConfig": "apps/training-app/tsconfig.app.json",
+            "assets": [
+              "apps/training-app/src/favicon.ico",
+              "apps/training-app/src/assets"
+            ],
+            "styles": [
+              "apps/training-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/training-app/src/environments/environment.ts",
+                  "with": "apps/training-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "training-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "training-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "training-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/training-app/src/test.ts",
+            "polyfills": "apps/training-app/src/polyfills.ts",
+            "tsConfig": "apps/training-app/tsconfig.spec.json",
+            "karmaConfig": "apps/training-app/karma.conf.js",
+            "styles": [
+              "apps/training-app/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/training-app/src/favicon.ico",
+              "apps/training-app/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/training-app/tsconfig.app.json",
+              "apps/training-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "training-app-e2e": {
+      "root": "apps/training-app-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/training-app-e2e/protractor.conf.js",
+            "devServerTarget": "training-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "training-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/training-app-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
@@ -127,5 +249,8 @@
       }
     }
   },
-  "defaultProject": "angular6"
+  "defaultProject": "angular6",
+  "cli": {
+    "defaultCollection": "@nrwl/schematics"
+  }
 }
